@@ -1,8 +1,7 @@
 import keras
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, Flatten
+from keras.layers import Dense, Flatten
 from keras.layers import Conv2D, MaxPooling2D
-import numpy as np
 import tensorflow as tf
 import pickle
 
@@ -16,7 +15,7 @@ batch = 100
 
 num_classes = 2
 
-epochs = 3
+epochs = 1
 
 img_width, img_height = 128, 128
 
