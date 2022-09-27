@@ -15,9 +15,9 @@ batch = 100
 
 num_classes = 2
 
-epochs = 1
+epochs = 2
 
-img_width, img_height = 128, 128
+img_width, img_height = 256, 256
 
 normalization_layer = tf.keras.layers.Rescaling(1./255)
 
@@ -58,7 +58,7 @@ model.fit(train, batch_size=batch, epochs=epochs, verbose=1, validation_data=val
 
 model.evaluate(test)
 
-pickle.dump(model, open('model.sav', 'wb'))
+#pickle.dump(model, open('model.sav', 'wb'))
 
 
 
