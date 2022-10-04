@@ -6,6 +6,7 @@ import tensorflow as tf
 import pickle
 
 
+
 dataset_path = '/home/robert/Pneumonia AI/chest_xray'
 train_path = '/home/robert/Pneumonia AI/chest_xray/train'
 val_path = '/home/robert/Pneumonia AI/chest_xray/val'
@@ -15,7 +16,7 @@ batch = 100
 
 num_classes = 2
 
-epochs = 2
+epochs = 3
 
 img_width, img_height = 256, 256
 
@@ -45,7 +46,7 @@ model = Sequential([
     MaxPooling2D(2, 2),
     Flatten(),
     Dense(512, activation='relu'),
-    Dense(1, 'sigmoid')
+    Dense(1, activation='sigmoid')
 ])
 
 
@@ -58,7 +59,7 @@ model.fit(train, batch_size=batch, epochs=epochs, verbose=1, validation_data=val
 
 model.evaluate(test)
 
-#pickle.dump(model, open('model.sav', 'wb'))
+pickle.dump(model, open('model.sav', 'wb'))
 
 
 

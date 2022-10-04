@@ -5,30 +5,27 @@ from keras.applications.resnet import decode_predictions, preprocess_input
 from keras.utils import load_img, img_to_array 
 import tensorflow as tf
 
-img_size = (128, 128)
+
+img_size = (256, 256)
 model = pickle.load(open('model.sav', 'rb'))
 
-probability_model = tf.keras.Sequential([model, tf.keras.layers.Softmax()])
-
-
-#test_image_path = '/home/robert/Pneumonia AI/chest_xray/val/NORMAL/NORMAL2-IM-1427-0001.jpeg'
-test_image_path = '/home/robert/Pneumonia AI/chest_xray/train/PNEUMONIA/person9_bacteria_39.jpeg'
-test_img = load_img(test_image_path, target_size=(img_size))
-
-test_img_array = img_to_array(test_img)
-test_img_ex = np.expand_dims(test_img_array, axis=0)
-
-test_img_pre = preprocess_input(test_img_ex)
-
-print(test_img_pre.shape)
-
+threshold = 0.5
 
 def predict_image(image_path):
-    prediction = probability_model.predict(test_img_pre)
-    #print(decode_predictions(prediction, top=1))
-    print(prediction.shape)
-    print(prediction[0])
-    print(np.argmax(prediction[0]))
-    
+    img = load_img(image_path, target_size=(img_size))
 
-predict_image(test_img)
+    img_array = img_to_array(img)
+    img_ex = np.expand_dims(img_array, axis=0)
+
+    img_pre = preprocess_input(img_ex)
+   
+    prediction = model.predict(img_pre)
+
+    print(prediction[0])
+    print(image_path)
+    
+    if prediction[0] > threshold:
+        return("Positive")
+    else:
+        return("Negative")
+    
