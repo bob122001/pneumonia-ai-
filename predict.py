@@ -6,7 +6,7 @@ from keras.utils import load_img, img_to_array
 import tensorflow as tf
 
 
-img_size = (256, 256)
+img_size = (128, 128)
 model = pickle.load(open('model.sav', 'rb'))
 
 threshold = 0.5
