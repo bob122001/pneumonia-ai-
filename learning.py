@@ -2,7 +2,7 @@ from wsgiref import validate
 import keras
 from keras.models import Sequential
 from keras.layers import Dense, Flatten
-from keras.layers import Conv2D, MaxPooling2D, BatchNormalization
+from keras.layers import Conv2D, MaxPooling2D, BatchNormalization, Dropout
 import tensorflow as tf
 import pickle
 from sklearn.model_selection import StratifiedKFold
@@ -17,7 +17,7 @@ batch = 100
 
 num_classes = 2
 
-epochs = 2
+epochs = 10
 
 img_width, img_height = 128, 128
 
@@ -43,6 +43,7 @@ model = Sequential([
     MaxPooling2D(2, 2),
     Conv2D(64, kernel_size=(3, 3), activation='relu'),
     MaxPooling2D(2, 2),
+    Dropout(0.5),
     Flatten(),
     Dense(512, activation='relu'),
     Dense(1, activation='sigmoid')
