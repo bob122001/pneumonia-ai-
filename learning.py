@@ -50,9 +50,6 @@ model = Sequential([
 ])
 
 
-
-
-
 model.compile(optimizer='adam', loss=keras.losses.binary_crossentropy, metrics=['accuracy'])
 
 model.fit(train, batch_size=batch, epochs=epochs, verbose=1, validation_data=validate)
